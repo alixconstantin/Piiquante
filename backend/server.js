@@ -1,8 +1,21 @@
 const express = require('express')
 const app = express()
+const mongoose = require('mongoose');
+const path = require('path');
 const port = 3000
+const morgan = require("morgan");  
+
+app.use(morgan("dev")); 
 
 const userRoutes = require('./routes/user');
+
+mongoose.connect('mongodb+srv://alix:raku3louis@cluster0.buobr.mongodb.net/test?retryWrites=true&w=majority', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() => console.log('Connexion à MongoDB réussie !'))
+  .catch(() => console.log('Connexion à MongoDB échouée !'));
+
 
 app.use(express.json());
 
@@ -17,4 +30,4 @@ app.use((req, res, next) => {
 
 app.use('/api/auth', userRoutes);
 
-
+app.listen(port);
