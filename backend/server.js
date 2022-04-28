@@ -8,6 +8,7 @@ const morgan = require("morgan");
 app.use(morgan("dev")); 
 
 const userRoutes = require('./routes/user');
+const sauceRoutes = require('./routes/sauce');
 
 mongoose.connect('mongodb+srv://alix:raku3louis@cluster0.buobr.mongodb.net/test?retryWrites=true&w=majority', {
     useNewUrlParser: true,
@@ -29,5 +30,6 @@ app.use((req, res, next) => {
   });
 
 app.use('/api/auth', userRoutes);
+app.use('/api/sauces', sauceRoutes);
 
 app.listen(port);
