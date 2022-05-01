@@ -23,3 +23,14 @@ exports.createSauce = (req, res, next) => {
         .then(() => res.status(201).json({ message: 'Nouvelle sauce insérée avec succès !' }))
         .catch(error => res.status(400).json({ error }));
 };
+
+exports.updateSauce = (req, res, next) => {
+    const sauceObject = req.file ?
+    {
+      ...JSON.parse(req.body.sauce),
+      imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`} : { ...req.body }
+  
+    sauce.updateOne({ _id : req.params.id}, {...sauceObject, _id: req.params.id})
+    .then(res.status(200).json({ message : "Sauce modifiée"}))
+    .catch(error => res.status(400).json({ error }))
+  }
