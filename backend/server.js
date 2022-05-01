@@ -17,7 +17,6 @@ mongoose.connect('mongodb+srv://alix:raku3louis@cluster0.buobr.mongodb.net/test?
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
 
-
 app.use(express.json());
 
 // Permet en configurant les headers, de communiquer entre l'application du FrontEnd avec celle du BackEnd
